@@ -47,6 +47,9 @@ jobs:
           command: |
             VERSION=$(git describe --tag)
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+            apt-get install node
+            npm install -g skynet-cli
+            skynet-cli ./artifacts/bin/*
 
 workflows:
   version: 2
